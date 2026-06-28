@@ -58,41 +58,7 @@ The user defines constraints once in `AGENTS.md`. Those constraints govern all s
 
 ## Workflow
 
-### Session 1 — Intake and Scaffold
-
-1. The user provides an initial request describing a project, migration, refactor, or feature addition.
-2. The agent analyzes the request silently and builds a targeted question set — maximum 9 questions.
-3. The agent presents all questions in a single message, opened with:
-
-   ```
-   Before I begin, I need precise answers to eliminate every assumption that
-   would force a backtrack later. This is the only time I will ask for input
-   until a genuine blocker is encountered.
-   ```
-
-4. The user answers. If any answer is too vague, the agent asks one targeted follow-up for that specific question only, then proceeds.
-5. The agent generates all four scaffold files in order: `AGENTS.md`, `CONTEXT.md`, `TASK.md`, `PROGRESS.md`.
-6. The agent outputs the execution-ready confirmation block and waits for explicit user confirmation before beginning any work.
-
-### Every Subsequent Session
-
-1. Agent reads `AGENTS.md` completely.
-2. Agent reads `PROGRESS.md` — understands what is done and what has failed.
-3. Agent reads `TASK.md` — understands the current task and its acceptance criteria.
-4. Agent reads `CONTEXT.md` only if the current task touches modules described there.
-5. No code is written until all four steps are complete.
-
-### Every Task Cycle
-
-1. Agent executes the ordered steps in `TASK.md` Approach.
-2. Agent runs the exact check defined in `TASK.md` Acceptance Criteria.
-3. If verification passes: Agent logs the completed task in `PROGRESS.md` with verification proof, then asks about the next task.
-4. If verification fails: Agent logs the failure precisely in `PROGRESS.md`, updates `TASK.md` Known Risks and Approach, and retries.
-5. At the start of each new task, `TASK.md` is completely overwritten. It never accumulates content across tasks.
-
-### Context Window Management
-
-When the context window approaches its limit, the agent compresses `PROGRESS.md` entries older than five to single-line summaries, updates `CONTEXT.md` with any architectural changes from recent work, and continues execution from the scaffold files without requiring user re-briefing.
+<img src="public/workflow.png" width="1080">
 
 ---
 
