@@ -1,4 +1,8 @@
-﻿# Ayanokoji — Universal AI Agent Protocol
+<p align="center">
+  <img src="public/banner.svg" alt="Ayanokoji — Project Init Skill" width="1080"/>
+</p>
+
+# Ayanokoji — Universal AI Agent Protocol
 
 A universal skill for AI coding agents that enforces disciplined, strategic, and autonomous development behavior across any project type, stack, or session length.
 
