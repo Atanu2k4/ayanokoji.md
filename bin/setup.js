@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // bin/setup.js — Initialises the Ayanokoji protocol in any project directory.
-// Run: npx @Sahnik0/ayanokoji
+// Run: npx ayanokoji.md
 
 const fs = require('fs');
 const path = require('path');
