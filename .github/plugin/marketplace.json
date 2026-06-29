@@ -3,7 +3,7 @@
   "description": "Strategic execution protocol for AI agents. Front-loads intelligence, plans before acting, verifies before completing.",
   "owner": {
     "name": "Sahnik",
-    "url": "https://github.com/sahnik"
+    "url": "https://github.com/Sahnik00"
   },
   "plugins": [
     {
@@ -11,7 +11,12 @@
       "description": "Strategic Execution Protocol — front-loads intelligence, enforces planning, verifies every task.",
       "source": "./",
       "category": "productivity",
-      "tags": ["strategic-planning", "verification", "scaffolding", "productivity"],
+      "tags": [
+        "strategic-planning",
+        "verification",
+        "scaffolding",
+        "productivity"
+      ],
       "commands": "commands/",
       "skills": "skills/",
       "hooks": "hooks/copilot-hooks.json"
