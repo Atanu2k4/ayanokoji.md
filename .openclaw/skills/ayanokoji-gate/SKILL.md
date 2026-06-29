@@ -1,7 +1,7 @@
 ---
 name: ayanokoji-gate
 description: "Run the verification gate checks for the current task and update scaffold files. One-shot report."
-homepage: https://github.com/sahnik/ayanokoji.md
+homepage: https://github.com/Sahnik00/ayanokoji.md
 license: MIT
 ---
 

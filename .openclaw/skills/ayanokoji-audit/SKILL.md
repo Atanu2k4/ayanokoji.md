@@ -1,7 +1,7 @@
 ---
 name: ayanokoji-audit
 description: "Audit all four scaffold files for protocol drift, structural violations, and staleness. One-shot health report."
-homepage: https://github.com/sahnik/ayanokoji.md
+homepage: https://github.com/Sahnik00/ayanokoji.md
 license: MIT
 ---
 

@@ -4,12 +4,17 @@
   "description": "Strategic execution protocol. Front-loads intelligence, plans before acting, enforces verification before completing.",
   "author": {
     "name": "Sahnik",
-    "url": "https://github.com/sahnik"
+    "url": "https://github.com/Sahnik00"
   },
-  "homepage": "https://github.com/sahnik/ayanokoji.md",
-  "repository": "https://github.com/sahnik/ayanokoji.md",
+  "homepage": "https://github.com/Sahnik00/ayanokoji.md",
+  "repository": "https://github.com/Sahnik00/ayanokoji.md",
   "license": "MIT",
-  "keywords": ["strategic-planning", "verification", "scaffolding", "productivity"],
+  "keywords": [
+    "strategic-planning",
+    "verification",
+    "scaffolding",
+    "productivity"
+  ],
   "skills": "./skills/",
   "hooks": "./hooks/claude-codex-hooks.json",
   "interface": {
@@ -18,8 +23,11 @@
     "longDescription": "Front-loads all intelligence, plans the full game before the first move, and enforces a verification gate before any task is marked complete.",
     "developerName": "Sahnik",
     "category": "Productivity",
-    "capabilities": ["Instructions", "Lifecycle hooks"],
-    "websiteURL": "https://github.com/sahnik/ayanokoji.md",
+    "capabilities": [
+      "Instructions",
+      "Lifecycle hooks"
+    ],
+    "websiteURL": "https://github.com/Sahnik00/ayanokoji.md",
     "defaultPrompt": [
       "Activate Ayanokoji strategic protocol for this task.",
       "Review this task plan for gaps.",

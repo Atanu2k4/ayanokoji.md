@@ -1,7 +1,7 @@
 ---
 name: ayanokoji-debt
 description: "Surface all deferred decisions and unresolved blockers across the scaffold files. Prioritized debt ledger."
-homepage: https://github.com/sahnik/ayanokoji.md
+homepage: https://github.com/Sahnik00/ayanokoji.md
 license: MIT
 ---
 
