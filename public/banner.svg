@@ -1,219 +1,223 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&amp;family=Space+Grotesk:wght@400;600;700&amp;display=swap');
     </style>
 
-    <!-- Roughen / wobbly stroke filter for hand-drawn feel -->
+    <!-- Roughen for doodle elements -->
     <filter id="roughen" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="2" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="2" seed="5" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
 
-    <!-- Lighter wobble for text underline / highlight shapes -->
+    <!-- Heavier roughen specifically for the title text doodle effect -->
+    <filter id="roughenTitle" x="-8%" y="-20%" width="116%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="12" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Lighter roughen for borders -->
     <filter id="roughenLight" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.055" numOctaves="2" seed="5" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="9" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.0" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
 
-    <!-- Soft shadow for the outer border box -->
+    <!-- Shadow -->
     <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
-      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-color="#b0a090" flood-opacity="0.35"/>
+      <feDropShadow dx="2" dy="5" stdDeviation="8" flood-color="#1a000a" flood-opacity="0.6"/>
     </filter>
 
-    <!-- Clip to keep contents inside rounded rect -->
+    <!-- Glow for iris -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Sketchy title: blur + merge for ink bleed -->
+    <filter id="inkBleed" x="-5%" y="-15%" width="110%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.065" numOctaves="4" seed="8" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+      <feGaussianBlur in="displaced" stdDeviation="0.4" result="blurred"/>
+      <feMerge><feMergeNode in="blurred"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
     <clipPath id="canvasClip">
-      <rect width="900" height="300" rx="18"/>
+      <rect width="900" height="300" rx="14"/>
     </clipPath>
+
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a000a"/>
+      <stop offset="55%" stop-color="#3E000C"/>
+      <stop offset="100%" stop-color="#300008"/>
+    </linearGradient>
+
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#3E000C" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#1a0006" stop-opacity="0.5"/>
+    </radialGradient>
   </defs>
 
-  <!-- ===== BACKGROUND ===== -->
-  <!-- Cream / off-white paper background -->
-  <rect width="900" height="300" rx="18" fill="#fdf9f2" filter="url(#shadow)"/>
+  <!-- BACKGROUND -->
+  <rect width="900" height="300" rx="14" fill="url(#bgGrad)" filter="url(#shadow)"/>
+  <rect width="900" height="300" rx="14" fill="url(#vignette)"/>
 
-  <!-- Very subtle grid paper dots -->
-  <g opacity="0.07" clip-path="url(#canvasClip)">
-    <pattern id="grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-      <circle cx="14" cy="14" r="1.3" fill="#888"/>
+  <!-- Dot grid -->
+  <g opacity="0.055" clip-path="url(#canvasClip)">
+    <pattern id="grid" x="0" y="0" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#FFECD1"/>
     </pattern>
     <rect width="900" height="300" fill="url(#grid)"/>
   </g>
 
-  <!-- ===== OUTER DOODLE BORDER ===== -->
-  <rect x="6" y="6" width="888" height="288" rx="15"
-    fill="none" stroke="#2a2a2a" stroke-width="2.8"
+  <!-- OUTER BORDER doodled -->
+  <rect x="7" y="7" width="886" height="286" rx="12"
+    fill="none" stroke="#6b1a24" stroke-width="2.2"
     stroke-linecap="round" stroke-linejoin="round"
     filter="url(#roughen)"/>
-  <rect x="11" y="11" width="878" height="278" rx="12"
-    fill="none" stroke="#2a2a2a" stroke-width="1"
-    stroke-linecap="round" stroke-linejoin="round"
-    stroke-dasharray="6,4"
-    filter="url(#roughen)" opacity="0.35"/>
+  <rect x="13" y="13" width="874" height="274" rx="10"
+    fill="none" stroke="#FFECD1" stroke-width="0.8"
+    stroke-dasharray="6,5"
+    filter="url(#roughenLight)" opacity="0.15"/>
 
-  <!-- ===== CORNER DOODLE ACCENTS ===== -->
-  <path d="M22,22 L22,46 M22,22 L46,22" fill="none" stroke="#2a2a2a" stroke-width="2.4" stroke-linecap="round" filter="url(#roughen)"/>
-  <path d="M878,22 L878,46 M878,22 L854,22" fill="none" stroke="#2a2a2a" stroke-width="2.4" stroke-linecap="round" filter="url(#roughen)"/>
-  <path d="M22,278 L22,254 M22,278 L46,278" fill="none" stroke="#2a2a2a" stroke-width="2.4" stroke-linecap="round" filter="url(#roughen)"/>
-  <path d="M878,278 L878,254 M878,278 L854,278" fill="none" stroke="#2a2a2a" stroke-width="2.4" stroke-linecap="round" filter="url(#roughen)"/>
+  <!-- CORNER BRACKETS -->
+  <path d="M24,24 L24,54 M24,24 L54,24" fill="none" stroke="#FFECD1" stroke-width="2" stroke-linecap="round" filter="url(#roughen)" opacity="0.55"/>
+  <path d="M876,24 L876,54 M876,24 L846,24" fill="none" stroke="#FFECD1" stroke-width="2" stroke-linecap="round" filter="url(#roughen)" opacity="0.55"/>
+  <path d="M24,276 L24,246 M24,276 L54,276" fill="none" stroke="#FFECD1" stroke-width="2" stroke-linecap="round" filter="url(#roughen)" opacity="0.55"/>
+  <path d="M876,276 L876,246 M876,276 L846,276" fill="none" stroke="#FFECD1" stroke-width="2" stroke-linecap="round" filter="url(#roughen)" opacity="0.55"/>
 
-  <!-- ===== TOP SPARKLE / STAR DOODLES ===== -->
-  <g opacity="0.9" filter="url(#roughen)">
-    <line x1="68" y1="30" x2="68" y2="52" stroke="#f5c842" stroke-width="2.4" stroke-linecap="round"/>
-    <line x1="57" y1="41" x2="79" y2="41" stroke="#f5c842" stroke-width="2.4" stroke-linecap="round"/>
-    <line x1="61" y1="34" x2="75" y2="48" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/>
-    <line x1="75" y1="34" x2="61" y2="48" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- DOODLE ACCENTS top right -->
+  <g opacity="0.6" filter="url(#roughen)">
+    <line x1="832" y1="30" x2="832" y2="50" stroke="#FFECD1" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="822" y1="40" x2="842" y2="40" stroke="#FFECD1" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="825" y1="33" x2="839" y2="47" stroke="#FFECD1" stroke-width="1.1" stroke-linecap="round"/>
+    <line x1="839" y1="33" x2="825" y2="47" stroke="#FFECD1" stroke-width="1.1" stroke-linecap="round"/>
   </g>
-  <g opacity="0.7" filter="url(#roughen)">
-    <line x1="96" y1="22" x2="96" y2="36" stroke="#f5c842" stroke-width="1.6" stroke-linecap="round"/>
-    <line x1="89" y1="29" x2="103" y2="29" stroke="#f5c842" stroke-width="1.6" stroke-linecap="round"/>
-  </g>
-  <path d="M112,41 L128,41" fill="none" stroke="#2a2a2a" stroke-width="1.8" stroke-linecap="round" filter="url(#roughen)" opacity="0.55"/>
-  <path d="M122,35 L130,42 L122,49" fill="none" stroke="#2a2a2a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#roughen)" opacity="0.55"/>
-  <path d="M144,37 L153,28 L162,37 L171,28 L180,37" fill="none" stroke="#e05a2b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#roughen)" opacity="0.65"/>
+  <path d="M848,36 L855,28 L862,36 L869,28 L876,36" fill="none" stroke="#c4855a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#roughen)" opacity="0.5"/>
 
-  <g opacity="0.9" filter="url(#roughen)">
-    <line x1="832" y1="30" x2="832" y2="52" stroke="#f5c842" stroke-width="2.4" stroke-linecap="round"/>
-    <line x1="821" y1="41" x2="843" y2="41" stroke="#f5c842" stroke-width="2.4" stroke-linecap="round"/>
-    <line x1="825" y1="34" x2="839" y2="48" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/>
-    <line x1="839" y1="34" x2="825" y2="48" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Top-left dots -->
+  <g fill="#FFECD1" opacity="0.3">
+    <circle cx="68" cy="36" r="3" filter="url(#roughen)"/>
+    <circle cx="80" cy="36" r="2" filter="url(#roughen)"/>
+    <circle cx="89" cy="36" r="3.5" filter="url(#roughen)"/>
   </g>
-  <g opacity="0.7" filter="url(#roughen)">
-    <line x1="806" y1="22" x2="806" y2="36" stroke="#f5c842" stroke-width="1.6" stroke-linecap="round"/>
-    <line x1="799" y1="29" x2="813" y2="29" stroke="#f5c842" stroke-width="1.6" stroke-linecap="round"/>
-  </g>
-  <path d="M756,37 L765,28 L774,37 L783,28 L792,37" fill="none" stroke="#e05a2b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#roughen)" opacity="0.65"/>
 
-  <!-- ===== BOTTOM DOODLE ACCENTS ===== -->
-  <g fill="#4caf7d" opacity="0.75">
-    <circle cx="60" cy="264" r="5" filter="url(#roughen)"/>
-    <circle cx="78" cy="264" r="3.2" filter="url(#roughen)"/>
-    <circle cx="92" cy="264" r="5.5" filter="url(#roughen)"/>
-  </g>
-  <path d="M54,274 Q72,270 90,274 Q108,278 124,274" fill="none" stroke="#4caf7d" stroke-width="2" stroke-linecap="round" filter="url(#roughen)" opacity="0.5"/>
-  <g fill="#7b5ea7" opacity="0.75">
-    <circle cx="808" cy="264" r="5" filter="url(#roughen)"/>
-    <circle cx="826" cy="264" r="3.2" filter="url(#roughen)"/>
-    <circle cx="840" cy="264" r="5.5" filter="url(#roughen)"/>
-  </g>
-  <path d="M780,274 Q798,270 816,274 Q834,278 848,274" fill="none" stroke="#7b5ea7" stroke-width="2" stroke-linecap="round" filter="url(#roughen)" opacity="0.5"/>
-  <path d="M54,248 L108,248" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="5,4" filter="url(#roughen)" opacity="0.4"/>
-  <path d="M102,242 L110,249 L102,256" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#roughen)" opacity="0.4"/>
-  <path d="M846,248 L792,248" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="5,4" filter="url(#roughen)" opacity="0.4"/>
-  <path d="M798,242 L790,249 L798,256" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#roughen)" opacity="0.4"/>
+  <!-- HEXAGON LOGO -->
+  <polygon points="200,78 256,111 256,177 200,210 144,177 144,111" fill="#2a000a" opacity="0.95"/>
+  <polygon points="200,78 256,111 256,177 200,210 144,177 144,111"
+    fill="none" stroke="#FFECD1" stroke-width="2.2"
+    stroke-linejoin="round" filter="url(#roughen)" opacity="0.8"/>
+  <polygon points="200,96 246,120 246,168 200,192 154,168 154,120"
+    fill="none" stroke="#FFECD1" stroke-width="0.9"
+    stroke-linejoin="round" opacity="0.18"
+    transform="rotate(30 200 144)" filter="url(#roughen)"/>
 
-  <!-- ===== HEXAGON LOGO ===== -->
-  <!-- Hex fill — light green tint -->
-  <polygon points="200,80 254,112 254,176 200,208 146,176 146,112" fill="#e8f7ee" opacity="0.9"/>
-  <!-- Outer hexagon — hand-drawn outline -->
-  <polygon points="200,80 254,112 254,176 200,208 146,176 146,112"
-    fill="none" stroke="#2a2a2a" stroke-width="2.6" stroke-linejoin="round" filter="url(#roughen)"/>
-  <!-- Inner hexagon rotated -->
-  <polygon points="200,98 244,122 244,170 200,194 156,170 156,122"
-    fill="none" stroke="#4caf7d" stroke-width="1.4" stroke-linejoin="round"
-    opacity="0.55" transform="rotate(30 200 144)" filter="url(#roughen)"/>
-  <!-- Eye ellipse -->
-  <ellipse cx="200" cy="144" rx="38" ry="23"
-    fill="#fff" stroke="#2a2a2a" stroke-width="2.2" filter="url(#roughen)"/>
-  <!-- Eye lids -->
-  <path d="M162,144 Q200,110 238,144" fill="none" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round" filter="url(#roughen)"/>
-  <path d="M162,144 Q200,178 238,144" fill="none" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round" filter="url(#roughen)"/>
-  <!-- Iris -->
-  <circle cx="200" cy="144" r="13" fill="#4caf7d" stroke="#2a2a2a" stroke-width="2" filter="url(#roughen)"/>
-  <!-- Pupil -->
-  <circle cx="200" cy="144" r="6" fill="#1a1a1a" filter="url(#roughen)"/>
-  <!-- Eye shine -->
-  <circle cx="204" cy="140" r="2.8" fill="#ffffff" opacity="0.9"/>
+  <!-- Eye -->
+  <ellipse cx="200" cy="144" rx="36" ry="22"
+    fill="#1a0008" stroke="#FFECD1" stroke-width="1.8" filter="url(#roughen)"/>
+  <path d="M164,144 Q200,112 236,144" fill="none" stroke="#FFECD1" stroke-width="1.6" stroke-linecap="round" filter="url(#roughen)" opacity="0.65"/>
+  <path d="M164,144 Q200,176 236,144" fill="none" stroke="#FFECD1" stroke-width="1.6" stroke-linecap="round" filter="url(#roughen)" opacity="0.65"/>
+  <circle cx="200" cy="144" r="12" fill="#c4855a" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="200" cy="144" r="5.5" fill="#1a0008"/>
+  <circle cx="204" cy="140" r="2.5" fill="#FFECD1" opacity="0.9"/>
+
   <!-- Vertex dots -->
-  <circle cx="200" cy="80"  r="4" fill="#f5c842" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-  <circle cx="254" cy="112" r="4" fill="#f5c842" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-  <circle cx="254" cy="176" r="4" fill="#f5c842" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-  <circle cx="200" cy="208" r="4" fill="#f5c842" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-  <circle cx="146" cy="176" r="4" fill="#f5c842" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-  <circle cx="146" cy="112" r="4" fill="#f5c842" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-  <!-- Corner-to-eye lines -->
-  <line x1="200" y1="80"  x2="200" y2="121" stroke="#4caf7d" stroke-width="1.1" opacity="0.45" stroke-dasharray="3,3" filter="url(#roughen)"/>
-  <line x1="254" y1="112" x2="233" y2="134" stroke="#4caf7d" stroke-width="1.1" opacity="0.45" stroke-dasharray="3,3" filter="url(#roughen)"/>
-  <line x1="254" y1="176" x2="233" y2="154" stroke="#4caf7d" stroke-width="1.1" opacity="0.45" stroke-dasharray="3,3" filter="url(#roughen)"/>
-  <line x1="200" y1="208" x2="200" y2="167" stroke="#4caf7d" stroke-width="1.1" opacity="0.45" stroke-dasharray="3,3" filter="url(#roughen)"/>
-  <line x1="146" y1="176" x2="167" y2="154" stroke="#4caf7d" stroke-width="1.1" opacity="0.45" stroke-dasharray="3,3" filter="url(#roughen)"/>
-  <line x1="146" y1="112" x2="167" y2="134" stroke="#4caf7d" stroke-width="1.1" opacity="0.45" stroke-dasharray="3,3" filter="url(#roughen)"/>
+  <circle cx="200" cy="78"  r="3" fill="#FFECD1" opacity="0.45" filter="url(#roughen)"/>
+  <circle cx="256" cy="111" r="3" fill="#FFECD1" opacity="0.45" filter="url(#roughen)"/>
+  <circle cx="256" cy="177" r="3" fill="#FFECD1" opacity="0.45" filter="url(#roughen)"/>
+  <circle cx="200" cy="210" r="3" fill="#FFECD1" opacity="0.45" filter="url(#roughen)"/>
+  <circle cx="144" cy="177" r="3" fill="#FFECD1" opacity="0.45" filter="url(#roughen)"/>
+  <circle cx="144" cy="111" r="3" fill="#FFECD1" opacity="0.45" filter="url(#roughen)"/>
 
-  <!-- ===== TEXT BLOCK ===== -->
+  <!-- Connector lines -->
+  <line x1="200" y1="78"  x2="200" y2="123" stroke="#FFECD1" stroke-width="0.9" opacity="0.2" stroke-dasharray="3,4"/>
+  <line x1="256" y1="111" x2="232" y2="133" stroke="#FFECD1" stroke-width="0.9" opacity="0.2" stroke-dasharray="3,4"/>
+  <line x1="256" y1="177" x2="232" y2="155" stroke="#FFECD1" stroke-width="0.9" opacity="0.2" stroke-dasharray="3,4"/>
+  <line x1="200" y1="210" x2="200" y2="165" stroke="#FFECD1" stroke-width="0.9" opacity="0.2" stroke-dasharray="3,4"/>
+  <line x1="144" y1="177" x2="168" y2="155" stroke="#FFECD1" stroke-width="0.9" opacity="0.2" stroke-dasharray="3,4"/>
+  <line x1="144" y1="111" x2="168" y2="133" stroke="#FFECD1" stroke-width="0.9" opacity="0.2" stroke-dasharray="3,4"/>
 
-  <!-- Yellow marker highlight behind title -->
-  <path d="M313,122 Q318,114 822,114 Q828,114 828,126 Q828,138 822,140 Q550,143 313,140 Q307,139 307,132 Z"
-    fill="#f5e642" opacity="0.6" filter="url(#roughenLight)"/>
+  <!-- VERTICAL DIVIDER -->
+  <line x1="280" y1="74" x2="280" y2="226"
+    stroke="#6b1a24" stroke-width="1.3"
+    stroke-dasharray="4,4"
+    filter="url(#roughen)" opacity="0.6"/>
 
-  <!-- Wavy rule above title -->
-  <path d="M313,110 Q370,106 430,110 Q490,114 550,110 Q610,106 670,110 Q730,114 792,110 Q815,108 825,110"
-    fill="none" stroke="#2a2a2a" stroke-width="1.5" stroke-linecap="round" filter="url(#roughen)" opacity="0.5"/>
+  <!-- TEXT BLOCK -->
 
-  <!-- Main title -->
+  <!-- Straight line above title -->
+  <line x1="302" y1="100" x2="826" y2="100" stroke="#FFECD1" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== DOODLED TITLE — 3 layers for hand-drawn marker look ===== -->
+
+  <!-- Layer 1: Dark chocolate shadow pass — slightly offset, roughened -->
   <text
-    x="316" y="153"
-    font-family="'Nunito', 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif"
-    font-size="52"
-    font-weight="900"
-    letter-spacing="14"
-    fill="#1a1a1a"
+    x="306" y="162"
+    font-family="'Permanent Marker', cursive"
+    font-size="58"
+    font-weight="400"
+    letter-spacing="6"
+    fill="#1a0008"
+    opacity="0.7"
+    filter="url(#roughenTitle)"
   >AYANOKOJI</text>
 
-  <!-- Subtitle label box -->
-  <rect x="314" y="164" width="234" height="26" rx="7"
-    fill="#e8f7ee" stroke="#4caf7d" stroke-width="2"
-    filter="url(#roughen)"/>
+  <!-- Layer 2: Stroke outline pass — gives the pen-drawn border feel -->
   <text
-    x="321" y="182"
-    font-family="'Nunito', 'Comic Sans MS', cursive, sans-serif"
-    font-size="11.5"
-    font-weight="700"
+    x="303" y="160"
+    font-family="'Permanent Marker', cursive"
+    font-size="58"
+    font-weight="400"
+    letter-spacing="6"
+    fill="none"
+    stroke="#8b3a10"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.45"
+    filter="url(#roughenTitle)"
+  >AYANOKOJI</text>
+
+  <!-- Layer 3: Main sand fill — with ink bleed filter -->
+  <text
+    x="303" y="160"
+    font-family="'Permanent Marker', cursive"
+    font-size="58"
+    font-weight="400"
+    letter-spacing="6"
+    fill="#FFECD1"
+    filter="url(#inkBleed)"
+  >AYANOKOJI</text>
+
+  <!-- Straight line below title -->
+  <line x1="302" y1="172" x2="826" y2="172" stroke="#FFECD1" stroke-width="1" opacity="0.25"/>
+
+  <!-- Subtitle pill -->
+  <rect x="302" y="182" width="216" height="22" rx="4"
+    fill="#1a0008" stroke="#FFECD1" stroke-width="1.2"
+    filter="url(#roughen)" opacity="0.9"/>
+  <text
+    x="312" y="197"
+    font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif"
+    font-size="10"
+    font-weight="600"
     letter-spacing="4"
-    fill="#2a7a50"
+    fill="#FFECD1"
+    opacity="0.8"
   >PROJECT  INIT  SKILL</text>
 
-  <!-- Wavy rule below subtitle -->
-  <path d="M313,200 Q370,196 430,200 Q490,204 550,200 Q610,196 670,200 Q730,204 792,200 Q815,198 825,200"
-    fill="none" stroke="#2a2a2a" stroke-width="1.5" stroke-linecap="round" filter="url(#roughen)" opacity="0.5"/>
-
   <!-- Tagline -->
-  <circle cx="316" cy="220" r="4" fill="#e05a2b" filter="url(#roughen)"/>
+  <line x1="302" y1="218" x2="310" y2="218" stroke="#c4855a" stroke-width="1.5" stroke-linecap="round" filter="url(#roughen)" opacity="0.7"/>
   <text
-    x="327" y="224"
-    font-family="'Nunito', 'Comic Sans MS', cursive, sans-serif"
-    font-size="10.5"
-    font-weight="700"
-    letter-spacing="3"
-    fill="#444"
+    x="318" y="222"
+    font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif"
+    font-size="9.5"
+    font-weight="400"
+    letter-spacing="4"
+    fill="#FFECD1"
+    opacity="0.45"
   >UNIVERSAL  AGENT  PROTOCOL</text>
 
-  <!-- Three-dot ellipsis -->
-  <g fill="#aaa" opacity="0.8">
-    <circle cx="696" cy="220" r="2.8" filter="url(#roughen)"/>
-    <circle cx="708" cy="220" r="2.8" filter="url(#roughen)"/>
-    <circle cx="720" cy="220" r="2.8" filter="url(#roughen)"/>
-  </g>
-
-  <!-- Doodle robot icon -->
-  <rect x="736" y="197" width="36" height="30" rx="9"
-    fill="#fff" stroke="#2a2a2a" stroke-width="2"
-    filter="url(#roughen)"/>
-  <circle cx="747" cy="210" r="4" fill="#4caf7d" stroke="#1a1a1a" stroke-width="1.5" filter="url(#roughen)"/>
-  <circle cx="762" cy="210" r="4" fill="#4caf7d" stroke="#1a1a1a" stroke-width="1.5" filter="url(#roughen)"/>
-  <path d="M747,220 Q754,227 762,220" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" filter="url(#roughen)"/>
-  <line x1="754" y1="197" x2="754" y2="188" stroke="#2a2a2a" stroke-width="1.8" stroke-linecap="round" filter="url(#roughen)"/>
-  <circle cx="754" cy="186" r="3.5" fill="#e05a2b" stroke="#2a2a2a" stroke-width="1.4" filter="url(#roughen)"/>
-
-  <!-- Doodle lock icon -->
-  <path d="M795,204 Q795,197 803,197 Q811,197 811,204" fill="none" stroke="#7b5ea7" stroke-width="2.2" stroke-linecap="round" filter="url(#roughen)"/>
-  <rect x="791" y="204" width="22" height="18" rx="5"
-    fill="#ede8f7" stroke="#7b5ea7" stroke-width="2"
-    filter="url(#roughen)"/>
-  <circle cx="802" cy="212" r="3" fill="#7b5ea7" filter="url(#roughen)"/>
-
-  <!-- Connector dots between robot and lock -->
-  <g fill="#e05a2b" opacity="0.75">
-    <circle cx="780" cy="213" r="3" filter="url(#roughen)"/>
-    <circle cx="787" cy="209" r="2" filter="url(#roughen)"/>
-  </g>
+  <!-- Bottom accent line -->
+  <line x1="302" y1="244" x2="814" y2="244" stroke="#6b1a24" stroke-width="1.2" opacity="0.5"/>
 
 </svg>
