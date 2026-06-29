@@ -4,12 +4,17 @@
   "version": "1.0.0",
   "author": {
     "name": "Sahnik",
-    "url": "https://github.com/sahnik"
+    "url": "https://github.com/Sahnik00"
   },
-  "homepage": "https://github.com/sahnik/ayanokoji.md",
-  "repository": "https://github.com/sahnik/ayanokoji.md",
+  "homepage": "https://github.com/Sahnik0/ayanokoji.md",
+  "repository": "https://github.com/Sahnik0/ayanokoji.md",
   "license": "MIT",
-  "keywords": ["strategic-planning", "verification", "scaffolding", "productivity"],
+  "keywords": [
+    "strategic-planning",
+    "verification",
+    "scaffolding",
+    "productivity"
+  ],
   "commands": "commands/",
   "skills": "skills/",
   "hooks": "hooks/copilot-hooks.json"

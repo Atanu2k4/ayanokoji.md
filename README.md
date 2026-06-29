@@ -52,7 +52,7 @@ All commands are available as slash commands, `@mentions`, or natural language d
 ### Instant Setup (Recommended)
 Automatically configure the Ayanokoji ruleset for all detected IDEs in your current project directory with a single command:
 ```bash
-npx @sahnik/ayanokoji
+npx ayanokoji.md
 ```
 This command writes the master `AGENTS.md` to your project root and configures the relevant rule files for Cursor, Windsurf, Copilot, Cline, or Kiro based on your project structure.
 
@@ -78,7 +78,7 @@ cp .windsurf/rules/ayanokoji.md .windsurf/rules/ayanokoji.md
 ### 3. Claude Code / Gemini CLI / Antigravity CLI
 Install as a plugin:
 ```bash
-claude mcp add ayanokoji https://github.com/sahnik/ayanokoji.md
+claude mcp add ayanokoji https://github.com/Sahnik0/ayanokoji.md
 ```
 Or use the native commands configured in `commands/` and `gemini-extension.json`.
 
@@ -103,7 +103,7 @@ cp .kiro/steering/ayanokoji.md .kiro/steering/ayanokoji.md
 Add the plugin dependency to your `opencode.json`:
 ```json
 {
-  "plugins": ["@sahnik/ayanokoji"]
+  "plugins": ["ayanokoji.md"]
 }
 ```
 
